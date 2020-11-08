@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ReactPictureAnnotation } from "react-picture-annotation";
+import { ReactPictureAnnotation ,IShapeStyle} from "react-picture-annotation";
 import { useDispatch } from 'react-redux';
 import {saveAnnotations} from '../../Actions/annotate-actions'
 import './annotate.css'
@@ -15,7 +15,17 @@ const Annotate = () => {
     const onResize = () => {
         setPageSize({ width: window.innerWidth, height: window.innerHeight });
     };
-
+    const defaultShapeStyle = {
+        padding: 5, 
+        fontSize: 12,
+        fontColor: "blue", 
+        fontBackground: "transparent",
+        shapeBackground: "transparent",
+        shadowBlur: 10,
+        shapeStrokeStyle: "blue",
+        transformerBackground: "blue",
+        transformerSize: 10
+    }
     useEffect(() => {
         window.addEventListener('resize', onResize);
         return () => window.removeEventListener('resize', onResize);
@@ -65,6 +75,7 @@ const Annotate = () => {
                     onChange={onChange}
                     width={pageSize.width}
                     height={pageSize.height}
+                    annotationStyle = {defaultShapeStyle}
                 />
 
             </div>
